@@ -1,4 +1,4 @@
-# PumpingSteel (Atgym)
+# GymRat (krkr.Atgym)
 ## RimWorld Mod
 - The goal is to emulate a stamina and body type system in Rimworld
 
