@@ -32,12 +32,12 @@ namespace PumpingSteel
                 //if (def.comps == null) def.comps = new List<CompProperties>();
                 // def.comps.Add(new FitnessProperties());
 
-                if (def.inspectorTabsResolved?.Any(tab => tab is ITab_Pawn_FitBitDebuger) ?? false) continue;
+                if (def.inspectorTabsResolved?.Any(tab => tab is Tab_InspecterFitnessDebuger) ?? false) continue;
 
                 if (def.inspectorTabsResolved == null)
                     def.inspectorTabsResolved = new List<InspectTabBase>();
 
-                def.inspectorTabsResolved.Add(new ITab_Pawn_FitBitDebuger());
+                def.inspectorTabsResolved.Add(new Tab_InspecterFitnessDebuger());
                 Logging.Warning("def:" + def.defName);
             }
         }

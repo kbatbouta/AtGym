@@ -12,13 +12,13 @@ using Verse.Sound;
 
 namespace PumpingSteel.GymUI
 {
-    public class ITab_Pawn_FitBitDebuger : ITabsPlus
+    public class Tab_InspecterFitnessDebuger : ITab_BasePlus
     {
         public Vector2 Size = new Vector2(300f, 500f);
 
         public override bool IsVisible => SelPawn.RaceProps.Humanlike && Prefs.DevMode;
 
-        public ITab_Pawn_FitBitDebuger()
+        public Tab_InspecterFitnessDebuger()
         {
             labelKey = "TabFitBitDebug";
             tutorTag = "FitBitDebug";
@@ -32,7 +32,7 @@ namespace PumpingSteel.GymUI
         }
 
 
-        public override void FillTab()
+        protected override void FillTab()
         {
             if (Finder.StaminaTracker.TryGet(SelPawn, out var unit))
             {
@@ -84,7 +84,7 @@ namespace PumpingSteel.GymUI
             base.OnOpen();
         }
 
-        public override void CloseTab()
+        protected override void CloseTab()
         {
             base.CloseTab();
         }

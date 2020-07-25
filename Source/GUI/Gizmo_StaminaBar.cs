@@ -35,17 +35,20 @@ namespace PumpingSteel.GymUI
             Widgets.DrawWindowBackground(rect);
             GUI.BeginGroup(rect);
             Text.Font = GameFont.Tiny;
-            Widgets.Label(new Rect(10, 10, 100,15),"Stamina: " + Math.Round(unit.staminaLevel, 2));
-            Widgets.Label(new Rect(10, 25, 100,15),"Capacity: " + unit.maxStaminaLevel);
-            Widgets.Label(new Rect(10, 40, 100,15),"Mod: " + unit.CurStaminaMod);
-            Widgets.Label(new Rect(10, 60, 100,15),"Bodysize: " + comp.bodySize);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.DrawBoxSolid(new Rect(9, 9, GetWidth(maxWidth) - 18 ,17), Color.white);
+            Widgets.FillableBar(new Rect(10, 10, GetWidth(maxWidth) - 20 ,15),
+                unit.staminaLevel/unit.maxStaminaLevel);
+            
+            Widgets.Label(new Rect(10, 30, 100,15),"Stamina: "  + Math.Floor((unit.staminaLevel/unit.maxStaminaLevel) * 10) + "/10 ");
+            Widgets.Label(new Rect(10, 47, 100,15),"Mod: " + unit.CurStaminaMod);
             GUI.EndGroup();
             return new GizmoResult(GizmoState.Clear);
         }
 
         public override float GetWidth(float maxWidth)
         {
-            return Mathf.Min(100f, maxWidth);
+            return Mathf.Min(110f, maxWidth);
         }
     }
 }

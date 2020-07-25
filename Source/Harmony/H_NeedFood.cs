@@ -30,6 +30,7 @@ namespace PumpingSteel.Patches
     [HarmonyPatch(typeof(Need_Food), "HungerRateIgnoringMalnutrition", MethodType.Getter)]
     public static class H_NeedFood_HungerRate_IgnoringMal
     {
+
         [HarmonyPriority(Priority.VeryLow)]
         public static void Postfix(ref float __result, Pawn ___pawn)
         {

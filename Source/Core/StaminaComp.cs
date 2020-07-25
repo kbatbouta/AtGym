@@ -44,13 +44,13 @@ namespace PumpingSteel.Core
         private void Notify_ModChanged(StaminaMod oldMod)
         {
             if (Unit.CurStaminaMod == StaminaMod.Breathing)
-            {
+            { 
                 BodyUtilities.AdjustSeverity(SelPawn, FitnessHediffsDefOf.OutOfBreath,2.0f);   
             }
 
             if (oldMod == StaminaMod.Breathing)
             {
-                BodyUtilities.AdjustSeverity(SelPawn, FitnessHediffsDefOf.OutOfBreath,1.0f);
+               BodyUtilities.AdjustSeverity(SelPawn, FitnessHediffsDefOf.OutOfBreath,1.0f);
             }
         }
 
@@ -68,29 +68,28 @@ namespace PumpingSteel.Core
         internal void Walking()
         {
             if (Unit.staminaLevel > 0.15f && !SelPawn.pather.Moving) Unit.CurStaminaMod = StaminaMod.Resting;
-            if (Unit.staminaLevel <= 0.05f + SelPawn.BodySize / 4.0f) Unit.CurStaminaMod = StaminaMod.Breathing;
+            if (Unit.staminaLevel <= 0.15f) Unit.CurStaminaMod = StaminaMod.Breathing;
             
             if (Unit.CurStaminaMod != oldMod) Notify_ModChanged(oldMod);
             else
             {
                 var modifer = 0f;
-                if (IsMoving()) modifer = -0.015f;
-                Unit.staminaLevel = Mathf.Clamp(Unit.staminaLevel - 0.005f + modifer, 0, Unit.maxStaminaLevel);
+                if (IsMoving()) modifer = 0.01f;
+                Unit.staminaLevel = Mathf.Clamp(Unit.staminaLevel - 0.005f - modifer, 0, Unit.maxStaminaLevel);
             }
         }
 
         internal void Breathing()
         {
-            if (Unit.staminaLevel > 0.85f && !SelPawn.pather.Moving) Unit.CurStaminaMod = StaminaMod.Resting;
-            if (Unit.staminaLevel > 1.00f && SelPawn.pather.Moving) Unit.CurStaminaMod = StaminaMod.Running;
+            if (Unit.staminaLevel >= 0.85f && !SelPawn.pather.Moving) Unit.CurStaminaMod = StaminaMod.Resting;
+            if (Unit.staminaLevel >= 0.85f && SelPawn.pather.Moving) Unit.CurStaminaMod = StaminaMod.Running;
             
             if (Unit.CurStaminaMod != oldMod) Notify_ModChanged(oldMod);
             else
             {
-                var modifer = 0f;
+                var modifer = 0.0025f;
                 if (!SelPawn.pather.Moving) modifer = 0.015f;
                 Unit.staminaLevel = Mathf.Clamp(Unit.staminaLevel + 0.015f + modifer, 0, Unit.maxStaminaLevel);
-               
             }
         }
 
@@ -107,8 +106,7 @@ namespace PumpingSteel.Core
 
         private bool IsMoving()
         {
-            return SelPawn.pather.Moving &&
-                   (SelPawn.CurJob?.def != JobDefOf.Wait_Wander && SelPawn.CurJob?.def != JobDefOf.GotoWander);
+            return SelPawn.pather.Moving;
         }
 
         public override IFitnessTracker<StaminaUnit> GetTracker()
