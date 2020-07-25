@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using PumpingSteel.Core.Hediffs;
 using PumpingSteel.Fitness;
@@ -9,6 +10,8 @@ namespace PumpingSteel.Tools
 {
     public static class BodyUtilities
     {
+        private static Dictionary<int, Hediff> _hediffs = new Dictionary<int, Hediff>();
+        
         public static void SetBodySize(this Pawn pawn, BodyTypeDef bodyTypeDef)
         {
             pawn.story.bodyType = bodyTypeDef;
@@ -49,23 +52,28 @@ namespace PumpingSteel.Tools
             Hediff hdiff = null)
         {
             if (hdiff != null)
-            {
                 hdiff.Severity = severity;
+            else if (_hediffs.TryGetValue(pawn.thingIDNumber, out hdiff))
+            {
+                if (hdiff != null)
+                {
+                    hdiff.Severity = severity; return;
+                }
+            }
+
+            var firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(hdDef);
+            if (firstHediffOfDef != null)
+            {
+                firstHediffOfDef.Severity = severity;
             }
             else
             {
-                var firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(hdDef);
-                if (firstHediffOfDef != null)
-                {
-                    firstHediffOfDef.Severity = severity;
-                }
-                else
-                {
-                    firstHediffOfDef = HediffMaker.MakeHediff(hdDef, pawn);
-                    firstHediffOfDef.Severity = severity;
-                    pawn.health.AddHediff(firstHediffOfDef);
-                }
+                firstHediffOfDef = HediffMaker.MakeHediff(hdDef, pawn);
+                firstHediffOfDef.Severity = severity;
+                pawn.health.AddHediff(firstHediffOfDef);
             }
+            
+            _hediffs.Add(pawn.thingIDNumber, firstHediffOfDef);
         }
     }
 }

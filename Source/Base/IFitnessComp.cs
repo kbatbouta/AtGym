@@ -31,7 +31,7 @@ namespace PumpingSteel.Core
             set => unit = value;
         }
 
-        public bool IsAnimal => animal;
+        public bool IsAnimal => !human;
 
         public bool IsHuman => human;
 

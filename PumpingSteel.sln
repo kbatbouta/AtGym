@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpingSteel", "..\..\Library\Application Support\Steam\steamapps\common\RimWorld\RimWorldMac.app\Mods\PumpingSteel\Source\PumpingSteel.csproj", "{300EDA66-1704-4EFA-8FBE-63C1B6F36E9A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpingSteel", "Source\PumpingSteel.csproj", "{300EDA66-1704-4EFA-8FBE-63C1B6F36E9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

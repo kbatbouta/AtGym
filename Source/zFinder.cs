@@ -10,7 +10,7 @@ namespace PumpingSteel
 {
     public static class Finder
     {
-        public static readonly string packageID = "krk.atgym";
+        public static readonly string packageID = "krkr.atgym";
 
         public static readonly HashSet<StatDef> CachedAffectedStats = new HashSet<StatDef>();
 

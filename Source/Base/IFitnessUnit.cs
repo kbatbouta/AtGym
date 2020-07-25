@@ -10,6 +10,7 @@ namespace PumpingSteel.Fitness
         public abstract string LoadPostfix { get; }
 
         public int loadID;
+        public bool DEBUG = false;
 
         protected Pawn pawn;
 

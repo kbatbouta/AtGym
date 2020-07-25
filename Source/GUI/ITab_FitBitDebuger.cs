@@ -7,8 +7,10 @@ using PumpingSteel.Fitness;
 using PumpingSteel.Tools;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.UI;
 using Verse;
 using Verse.Sound;
+using Text = Verse.Text;
 
 namespace PumpingSteel.GymUI
 {
@@ -63,8 +65,14 @@ namespace PumpingSteel.GymUI
                 if (Widgets.ButtonText(new Rect(220, yOffset, 70, 30), "fat")) SelPawn.SetBodySize(BodyTypeDefOf.Fat);
 
                 yOffset += 35;
+                
+                Widgets.DrawLine(new Vector2(10, yOffset), new Vector2(290f, yOffset), Color.white, 2f);
+                yOffset += 5;
 
                 Text.Font = GameFont.Tiny;
+                
+                if (Widgets.ButtonText(new Rect(10, yOffset, 70, 30), "Toggle Logging"))
+                    unit.DEBUG = !unit.DEBUG;
 
                 Widgets.DrawLine(new Vector2(10, yOffset), new Vector2(290f, yOffset), Color.white, 2f);
                 yOffset += 5;
