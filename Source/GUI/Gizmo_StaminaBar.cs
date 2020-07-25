@@ -19,9 +19,11 @@ namespace PumpingSteel.GymUI
         private StaminaUnit unit = null;
         private StaminaComp comp = null;
         
-        private static readonly Texture2D FullShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.1f, 0.5f, 0.1f));
+        private static Texture2D FullShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.15f, 0.32f, 0.15f));
 
-        private static readonly Texture2D EmptyShieldBarTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
+        private static Texture2D LowShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.15f, 0.32f, 0.32f));
+
+        private static Texture2D EmptyShieldBarTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
 
         private float staminaLevel => unit?.staminaLevel ?? 0f;
 
@@ -45,11 +47,15 @@ namespace PumpingSteel.GymUI
             Rect rect4 = rect2;
             rect4.yMin = rect2.y + rect2.height / 2f;
             float fillPercent = unit.staminaLevel / unit.maxStaminaLevel;
-            Widgets.FillableBar(rect4, fillPercent, FullShieldBarTex, EmptyShieldBarTex, doBorder: false);
+            
+            Widgets.FillableBar(rect4, fillPercent, unit.CurStaminaMod != StaminaMod.Breathing ? FullShieldBarTex : LowShieldBarTex, EmptyShieldBarTex, doBorder: false);
+            
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
+            
             Widgets.Label(rect4, (unit.staminaLevel * 100f).ToString("F0") + " / " + (unit.maxStaminaLevel * 100f).ToString("F0"));
             Text.Anchor = TextAnchor.UpperLeft;
+            
             return new GizmoResult(GizmoState.Clear);
         }
 

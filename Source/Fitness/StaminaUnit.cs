@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Verse;
 
@@ -14,7 +15,7 @@ namespace PumpingSteel.Fitness
 
     public class StaminaUnit : IFitnessUnit
     {
-        public float staminaLevel = 1.0f;
+        public float staminaLevel;
         public float oldstaminaLevel = 1.0f;
         
         public float maxStaminaLevel = 1.0f;

@@ -18,18 +18,8 @@ namespace PumpingSteel.Tools
             pawn.Drawer.renderer.graphics.ResolveAllGraphics();
 
             if (pawn.Spawned) RepairBody(pawn);
-
-            SetBodyHediff(pawn);
         }
-
-        public static void SetBodyHediff(Pawn pawn, int curStaminaPercentage = 1)
-        {
-            if (curStaminaPercentage == -1) return;
-
-            AdjustSeverity(pawn, FitnessHediffsDefOf.OutOfBreath, curStaminaPercentage);
-            RepairBody(pawn);
-        }
-
+        
         public static void RepairBody(Pawn pawn, Hediff hdiff = null)
         {
             if (hdiff != null && pawn.story.bodyType == BodyTypeDefOf.Fat && hdiff?.Severity != 1)

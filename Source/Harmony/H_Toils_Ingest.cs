@@ -36,7 +36,7 @@ namespace PumpingSteel.Patches
             
             if (Finder.StaminaTracker.TryGet(ingestor, out StaminaUnit sUnit))
             {
-                sUnit.staminaLevel = Mathf.Clamp(sUnit.staminaLevel - 0.05f, 0f, 1.0f);
+                sUnit.staminaLevel = Mathf.Clamp(sUnit.staminaLevel - 0.05f, 0f, sUnit.maxStaminaLevel);
             }
         }
 

@@ -17,7 +17,7 @@ namespace PumpingSteel.Core
         private bool animal = false;
         private bool human = false;
 
-        public Pawn SelPawn { get; set; }
+        public Pawn SelPawn;
         
         public float bodySize;
 
@@ -42,7 +42,7 @@ namespace PumpingSteel.Core
         public override void CompTick()
         {
             base.CompTick();
-            if (tick++ % 30  != 0) return;
+            if (tick++ % 60  != 0) return;
             
             if (disabled || !parent.Spawned) return;
 
@@ -74,7 +74,7 @@ namespace PumpingSteel.Core
             bodySize = SelPawn?.BodySize ?? 0.15f;
             
             tick = parent.thingIDNumber;
-
+            
             // Disable for mechanized pawn.
             if (SelPawn != null && !SelPawn?.RaceProps?.IsFlesh == true)
             {
