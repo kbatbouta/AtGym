@@ -119,7 +119,7 @@ namespace PumpingSteel.Core
         
         private bool IsMoving()
         {
-            return (SelPawn.pather.Moving && !SelPawn.Drafted) || (SelPawn.Drafted && SelPawn?.CurJob?.def != JobDefOf.Wait_Combat);
+            return (SelPawn.pather.Moving || !SelPawn.Drafted) ;
         }
 
         public override IFitnessTracker<StaminaUnit> GetTracker()

@@ -18,6 +18,10 @@ namespace PumpingSteel.GymUI
     {
         private StaminaUnit unit = null;
         private StaminaComp comp = null;
+        
+        private static readonly Texture2D FullShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.1f, 0.5f, 0.1f));
+
+        private static readonly Texture2D EmptyShieldBarTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
 
         private float staminaLevel => unit?.staminaLevel ?? 0f;
 
@@ -31,24 +35,27 @@ namespace PumpingSteel.GymUI
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
         {
-            var rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
+            Rect rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
+            Rect rect2 = rect.ContractedBy(6f);
             Widgets.DrawWindowBackground(rect);
-            GUI.BeginGroup(rect);
+            Rect rect3 = rect2;
+            rect3.height = rect.height / 2f;
             Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.DrawBoxSolid(new Rect(9, 9, GetWidth(maxWidth) - 18 ,17), Color.white);
-            Widgets.FillableBar(new Rect(10, 10, GetWidth(maxWidth) - 20 ,15),
-                unit.staminaLevel/unit.maxStaminaLevel);
-            
-            Widgets.Label(new Rect(10, 30, 100,15),"Stamina: "  + Math.Floor((unit.staminaLevel/unit.maxStaminaLevel) * 10) + "/10 ");
-            Widgets.Label(new Rect(10, 47, 100,15),"Mod: " + unit.CurStaminaMod);
-            GUI.EndGroup();
+            Widgets.Label(rect3, "Stamina (" + unit.CurStaminaMod + ")");
+            Rect rect4 = rect2;
+            rect4.yMin = rect2.y + rect2.height / 2f;
+            float fillPercent = unit.staminaLevel / unit.maxStaminaLevel;
+            Widgets.FillableBar(rect4, fillPercent, FullShieldBarTex, EmptyShieldBarTex, doBorder: false);
+            Text.Font = GameFont.Small;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Widgets.Label(rect4, (unit.staminaLevel * 100f).ToString("F0") + " / " + (unit.maxStaminaLevel * 100f).ToString("F0"));
+            Text.Anchor = TextAnchor.UpperLeft;
             return new GizmoResult(GizmoState.Clear);
         }
 
         public override float GetWidth(float maxWidth)
         {
-            return Mathf.Min(110f, maxWidth);
+            return Mathf.Min(140f, maxWidth);
         }
     }
 }
