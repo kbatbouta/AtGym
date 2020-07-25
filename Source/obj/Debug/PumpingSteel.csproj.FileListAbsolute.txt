@@ -1,0 +1,14 @@
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Achtung2/Assemblies/PumpingSteel.dll
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/Achtung2/Assemblies/PumpingSteel.pdb
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/EventsPlusKit/PumpingSteel/obj/Debug/PumpingSteel.csprojAssemblyReference.cache
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/EventsPlusKit/PumpingSteel/obj/Debug/PumpingSteel.csproj.CoreCompileInputs.cache
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/EventsPlusKit/PumpingSteel/obj/Debug/PumpingSteel.dll
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/EventsPlusKit/PumpingSteel/obj/Debug/PumpingSteel.pdb
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Assemblies/PumpingSteel.dll
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Assemblies/PumpingSteel.pdb
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.csproj.CoreCompileInputs.cache
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.dll
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.pdb
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.csprojAssemblyReference.cache
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Assemblies/PumpingSteel.xml
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.csproj.CopyComplete

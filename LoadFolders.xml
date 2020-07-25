@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<loadFolders>
+	<v1.1>
+		<li>/</li>
+		<li>Defs</li>
+		<li>Patches</li>
+		<li>Textures</li>
+		<li>Assemblies</li>
+	</v1.1>
+</loadFolders>
