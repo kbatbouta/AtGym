@@ -79,6 +79,8 @@ namespace PumpingSteel.GymUI
                 
                 Widgets.Label(new Rect(220, yOffset, 70, 30), "Stamina Level" + unit.staminaLevel);
                 yOffset += 25;
+                Widgets.Label(new Rect(220, yOffset, 70, 30), "Stamina Level" + unit.maxStaminaLevel);
+                yOffset += 25;
             }
             else
             {
