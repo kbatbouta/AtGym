@@ -107,7 +107,7 @@ namespace PumpingSteel.Core
             if (Unit.CurStaminaMod != oldMod) Notify_ModChanged(oldMod);
 
             Unit.staminaLevel = Mathf.Clamp(Unit.staminaLevel + delta, 0, Unit.maxStaminaLevel);
-#if DEBUG && TRACE
+#if DEBUG && TRACE && SHITMYSELF
             if (Unit.DEBUG)
             {
                 Log.TryOpenLogWindow();
@@ -119,7 +119,7 @@ namespace PumpingSteel.Core
             }
     #endif
         }
-
+        
         public override IFitnessTracker<StaminaUnit> GetTracker()
         {
             return Finder.StaminaTracker;
@@ -128,11 +128,6 @@ namespace PumpingSteel.Core
         public override bool ShouldDisable()
         {
             return false;
-        }
-
-        public override IEnumerable<Gizmo> CompGetGizmosExtra()
-        {
-            yield return new Gizmo_StaminaBar(Unit, this);
         }
     }
 }

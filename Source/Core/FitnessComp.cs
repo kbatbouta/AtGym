@@ -9,6 +9,7 @@ namespace PumpingSteel.Core
     {
         public override void DoTickRare()
         {
+            
         }
 
         public override bool ShouldDisable()

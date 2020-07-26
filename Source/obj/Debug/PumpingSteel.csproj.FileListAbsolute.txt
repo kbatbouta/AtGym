@@ -11,3 +11,10 @@
 /Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.csproj.CoreCompileInputs.cache
 /Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.dll
 /Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/PumpingSteel/Source/obj/Debug/PumpingSteel.pdb
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/GymRat-dev/Assemblies/PumpingSteel.xml
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/GymRat-dev/Assemblies/PumpingSteel.dll
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/GymRat-dev/Assemblies/PumpingSteel.pdb
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/GymRat-dev/Source/obj/Debug/PumpingSteel.csprojAssemblyReference.cache
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/GymRat-dev/Source/obj/Debug/PumpingSteel.csproj.CoreCompileInputs.cache
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/GymRat-dev/Source/obj/Debug/PumpingSteel.dll
+/Users/karimbatbouta/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Mods/GymRat-dev/Source/obj/Debug/PumpingSteel.pdb
