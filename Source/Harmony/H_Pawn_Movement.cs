@@ -52,7 +52,7 @@ namespace PumpingSteel.Patches
                         __result *= 1.7f;
                         break;
                     case StaminaMod.Walking:
-                        __result *= 0.9f + unit.staminaLevel / 2.0f;
+                        __result *= 0.9f + unit.staminaLevel / 1.5f;
                         break;
                 }
             }
