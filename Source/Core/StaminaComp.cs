@@ -21,6 +21,8 @@ namespace PumpingSteel.Core
 
         private const float breathCost = 0.015f;
         private const float breathCostMovingModifer = 0.015f;
+        
+        
 
         private IntVec3 position = IntVec3.Zero;
 
@@ -72,7 +74,7 @@ namespace PumpingSteel.Core
             if (0.15f <= Unit.staminaLevel && !IsMoving) Unit.CurStaminaMod = StaminaMod.Resting;
             if (Unit.staminaLevel < 0.15f) Unit.CurStaminaMod = StaminaMod.Breathing;
 
-            FinalizeStaminaUpdate(runningCost);
+            FinalizeStaminaUpdate(runningCost - (IsAnimal ? SelPawn.BodySize / 4 : 0));
         }
 
         internal void Walking()
@@ -107,6 +109,7 @@ namespace PumpingSteel.Core
             if (Unit.CurStaminaMod != oldMod) Notify_ModChanged(oldMod);
 
             Unit.staminaLevel = Mathf.Clamp(Unit.staminaLevel + delta, 0, Unit.maxStaminaLevel);
+            
 #if DEBUG && TRACE && SHITMYSELF
             if (Unit.DEBUG)
             {
