@@ -2,7 +2,7 @@
 using PumpingSteel.Fitness;
 using Verse;
 
-namespace PumpingSteel.Core.Capacities
+namespace PumpingSteel.Core.Capacities.CapacitiesWorkers
 {
     public class PawnCapacityWorker_Stamina : PawnCapacityWorker
     {

@@ -1,25 +1,22 @@
 ﻿using System;
 using PumpingSteel.Fitness;
-using PumpingSteel.Tools;
 using Verse;
 
 namespace PumpingSteel.Core
 {
     public abstract class IFitnessComp<T> : ThingComp where T : IFitnessUnit
     {
-        private bool disabled = false;
-        private bool initialized = false;
-        
+        private bool animal;
+
+        public float bodySize;
+        private bool disabled;
+        private bool initialized;
+
+        public Pawn SelPawn;
+
         private int tick;
 
         private T unit;
-
-        private bool animal = false;
-        private bool human = false;
-
-        public Pawn SelPawn;
-        
-        public float bodySize;
 
         public T Unit
         {
@@ -31,9 +28,9 @@ namespace PumpingSteel.Core
             set => unit = value;
         }
 
-        public bool IsAnimal => !human;
+        public bool IsAnimal => !IsHuman;
 
-        public bool IsHuman => human;
+        public bool IsHuman { get; private set; }
 
         public abstract void DoTickRare();
 
@@ -42,8 +39,8 @@ namespace PumpingSteel.Core
         public override void CompTick()
         {
             base.CompTick();
-            if (tick++ % 60  != 0) return;
-            
+            if (tick++ % 30 != 0) return;
+
             if (disabled || !parent.Spawned) return;
 
             if (!initialized && parent.Spawned)
@@ -72,9 +69,9 @@ namespace PumpingSteel.Core
 
             SelPawn = parent as Pawn;
             bodySize = SelPawn?.BodySize ?? 0.15f;
-            
+
             tick = parent.thingIDNumber;
-            
+
             // Disable for mechanized pawn.
             if (SelPawn != null && !SelPawn?.RaceProps?.IsFlesh == true)
             {
@@ -83,7 +80,7 @@ namespace PumpingSteel.Core
             }
 
             if (SelPawn != null && SelPawn.RaceProps.Animal) animal = true;
-            if (SelPawn != null && SelPawn.RaceProps.Humanlike) human = true;
+            if (SelPawn != null && SelPawn.RaceProps.Humanlike) IsHuman = true;
 
             if (ShouldDisable())
             {
@@ -93,7 +90,7 @@ namespace PumpingSteel.Core
 
             if (GetTracker().TryGet(SelPawn, out unit)) return;
 
-            unit = (T) Activator.CreateInstance(typeof(T), new[] {SelPawn});
+            unit = (T) Activator.CreateInstance(typeof(T), SelPawn);
 
             GetTracker().Register(unit);
 

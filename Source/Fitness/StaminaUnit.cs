@@ -1,5 +1,3 @@
-using System;
-using UnityEngine;
 using Verse;
 
 namespace PumpingSteel.Fitness
@@ -15,14 +13,16 @@ namespace PumpingSteel.Fitness
 
     public class StaminaUnit : IFitnessUnit
     {
-        public float staminaLevel;
-        public float oldstaminaLevel = 1.0f;
-        
-        public float maxStaminaLevel = 1.0f;
-
         public StaminaMod CurStaminaMod = StaminaMod.Nothing;
 
-        public override string LoadPostfix => "stamina";
+        public float maxStaminaLevel = 1.0f;
+        public float oldstaminaLevel = 1.0f;
+        public float staminaOffset = 0.0f;
+        public float staminaLevel;
+        
+        public int DamageAlertCountDown = 0;
+        public int DangerAlertCountDown = 0;
+        
 
         public StaminaUnit()
         {
@@ -32,6 +32,8 @@ namespace PumpingSteel.Fitness
         {
         }
 
+        public override string LoadPostfix => "stamina";
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -40,6 +42,7 @@ namespace PumpingSteel.Fitness
             Scribe_Values.Look(ref oldstaminaLevel, "unitOldStaminaLevel");
             Scribe_Values.Look(ref maxStaminaLevel, "unitMaxStaminaLevel");
             Scribe_Values.Look(ref CurStaminaMod, "unitStaminaMod");
+            Scribe_Values.Look(ref staminaOffset, "unitStaminaOffset");
         }
     }
 }

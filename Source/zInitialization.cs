@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using PumpingSteel.Core;
-using PumpingSteel.Core.Capacities;
-using PumpingSteel.Core.Hediffs;
 using PumpingSteel.GymUI;
 using PumpingSteel.Patches;
-using RimWorld;
 using Verse;
 
 namespace PumpingSteel

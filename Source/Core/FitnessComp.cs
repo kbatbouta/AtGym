@@ -1,7 +1,4 @@
-﻿using System;
-using PumpingSteel.Fitness;
-using PumpingSteel.Tools;
-using Verse;
+﻿using PumpingSteel.Fitness;
 
 namespace PumpingSteel.Core
 {
@@ -9,7 +6,6 @@ namespace PumpingSteel.Core
     {
         public override void DoTickRare()
         {
-            
         }
 
         public override bool ShouldDisable()

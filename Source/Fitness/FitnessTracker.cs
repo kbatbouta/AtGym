@@ -5,28 +5,28 @@ using Verse;
 namespace PumpingSteel.Fitness
 {
     /// <summary>
-    /// FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
-    /// It provide caching and scribing operation. 
+    ///     FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
+    ///     It provide caching and scribing operation.
     /// </summary>
     public class FitnessTracker : IFitnessTracker<FitnessBodyUnit>
     {
         // ReSharper disable once InconsistentNaming
         private List<FitnessBodyUnit> units = new List<FitnessBodyUnit>();
 
-        private Dictionary<int, FitnessBodyUnit> UnitsPawnsPairs { get; } = new Dictionary<int, FitnessBodyUnit>(10);
-
-        /// <summary>
-        /// Return all available FitnessUnits. 
-        /// </summary>
-        public IEnumerable<FitnessBodyUnit> Units => units;
-
         public FitnessTracker(World world) : base(world)
         {
             Finder.FitnessTracker = this;
         }
 
+        private Dictionary<int, FitnessBodyUnit> UnitsPawnsPairs { get; } = new Dictionary<int, FitnessBodyUnit>(10);
+
         /// <summary>
-        /// Provide null safe and access to FitnessUnits.
+        ///     Return all available FitnessUnits.
+        /// </summary>
+        public IEnumerable<FitnessBodyUnit> Units => units;
+
+        /// <summary>
+        ///     Provide null safe and access to FitnessUnits.
         /// </summary>
         /// <param name="pawn">SelPawn</param>
         /// <param name="unit">Output FitnessUnit for said pawn</param>
@@ -44,8 +44,8 @@ namespace PumpingSteel.Fitness
         }
 
         /// <summary>
-        /// Used to register a new pawn with the tracker.
-        /// NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
+        ///     Used to register a new pawn with the tracker.
+        ///     NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
         /// </summary>
         /// <param name="unit"></param>
         public override void Register(FitnessBodyUnit unit)

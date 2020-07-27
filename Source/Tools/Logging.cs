@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Verse;
 
@@ -57,14 +57,14 @@ namespace PumpingSteel
 
         public static void Warning(string message)
         {
-            Line(new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().Name,
+            Line(new StackTrace().GetFrame(1).GetMethod().Name,
                 true);
             Log.Warning(Header.Append(message).ToString());
         }
 
         public static void Error(string message)
         {
-            Line(new System.Diagnostics.StackTrace().GetFrame(1).GetMethod().Name,
+            Line(new StackTrace().GetFrame(1).GetMethod().Name,
                 true);
             Log.Error(Header.Append(message).ToString());
         }

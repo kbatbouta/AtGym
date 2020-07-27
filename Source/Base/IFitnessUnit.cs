@@ -1,18 +1,28 @@
 ﻿using System;
 using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace PumpingSteel.Fitness
 {
     public abstract class IFitnessUnit : IExposable, ILoadReferenceable
     {
-        public abstract string LoadPostfix { get; }
-
-        public int loadID;
         public bool DEBUG = false;
 
+        public int loadID;
+
         protected Pawn pawn;
+
+        public IFitnessUnit()
+        {
+        }
+
+        public IFitnessUnit(Pawn pawn)
+        {
+            this.pawn = pawn;
+            loadID = pawn.thingIDNumber;
+        }
+
+        public abstract string LoadPostfix { get; }
 
         public BodyTypeDef BodyType => pawn.story.bodyType;
 
@@ -28,20 +38,10 @@ namespace PumpingSteel.Fitness
             }
         }
 
-        public IFitnessUnit()
-        {
-        }
-
-        public IFitnessUnit(Pawn pawn)
-        {
-            this.pawn = pawn;
-            loadID = pawn.thingIDNumber;
-        }
-
         public virtual void ExposeData()
         {
             Scribe_Values.Look(ref loadID, "LoadId_" + LoadPostfix);
-            Scribe_References.Look(ref pawn, "unitPawn_" + LoadPostfix, false);
+            Scribe_References.Look(ref pawn, "unitPawn_" + LoadPostfix);
         }
 
         public string GetUniqueLoadID()

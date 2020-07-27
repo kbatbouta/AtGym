@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <ThinkTreeDef>
+        <defName>PrisonLabor_WorkThinkTree</defName>
+        <insertTag>Humanlike_PostDuty</insertTag>
+        <insertPriority>60</insertPriority>
+        <thinkRoot Class="PumpingSteel.Core.AI.ThinkNodes.ThinkNode_Conditional_WorkoutRoot">
+            <invert>false</invert>
+            <subNodes>
+                <li Class="JobGiver_SeekSafeTemperature" />
+                <li Class="PumpingSteel.Core.AI.JobGivers.JobGiver_FitnessJogge" />
+            </subNodes>
+        </thinkRoot>
+    </ThinkTreeDef>
+</Defs>

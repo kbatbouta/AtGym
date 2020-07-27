@@ -5,28 +5,28 @@ using Verse;
 namespace PumpingSteel.Fitness
 {
     /// <summary>
-    /// FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
-    /// It provide caching and scribing operation. 
+    ///     FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
+    ///     It provide caching and scribing operation.
     /// </summary>
     public class StaminaTracker : IFitnessTracker<StaminaUnit>
     {
         // ReSharper disable once InconsistentNaming
         private List<StaminaUnit> units = new List<StaminaUnit>();
 
-        private Dictionary<int, StaminaUnit> UnitsPawnsPairs { get; } = new Dictionary<int, StaminaUnit>(10);
-
-        /// <summary>
-        /// Return all available FitnessUnits. 
-        /// </summary>
-        public IEnumerable<IFitnessUnit> Units => units;
-
         public StaminaTracker(World world) : base(world)
         {
             Finder.StaminaTracker = this;
         }
 
+        private Dictionary<int, StaminaUnit> UnitsPawnsPairs { get; } = new Dictionary<int, StaminaUnit>(10);
+
         /// <summary>
-        /// Provide null safe and access to FitnessUnits.
+        ///     Return all available FitnessUnits.
+        /// </summary>
+        public IEnumerable<IFitnessUnit> Units => units;
+
+        /// <summary>
+        ///     Provide null safe and access to FitnessUnits.
         /// </summary>
         /// <param name="pawn">SelPawn</param>
         /// <param name="unit">Output FitnessUnit for said pawn</param>
@@ -44,8 +44,8 @@ namespace PumpingSteel.Fitness
         }
 
         /// <summary>
-        /// Used to register a new pawn with the tracker.
-        /// NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
+        ///     Used to register a new pawn with the tracker.
+        ///     NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
         /// </summary>
         /// <param name="unit"></param>
         public override void Register(StaminaUnit unit)

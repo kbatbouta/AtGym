@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿using System.Collections.Generic;
 using PumpingSteel.Core.Hediffs;
-using PumpingSteel.Fitness;
 using RimWorld;
 using Verse;
 
@@ -10,8 +7,8 @@ namespace PumpingSteel.Tools
 {
     public static class BodyUtilities
     {
-        private static Dictionary<int, Hediff> _hediffs = new Dictionary<int, Hediff>();
-        
+        private static readonly Dictionary<int, Hediff> _hediffs = new Dictionary<int, Hediff>();
+
         public static void SetBodySize(this Pawn pawn, BodyTypeDef bodyTypeDef)
         {
             pawn.story.bodyType = bodyTypeDef;
@@ -19,7 +16,7 @@ namespace PumpingSteel.Tools
 
             if (pawn.Spawned) RepairBody(pawn);
         }
-        
+
         public static void RepairBody(Pawn pawn, Hediff hdiff = null)
         {
             if (hdiff != null && pawn.story.bodyType == BodyTypeDefOf.Fat && hdiff?.Severity != 1)
@@ -44,12 +41,11 @@ namespace PumpingSteel.Tools
             if (hdiff != null)
                 hdiff.Severity = severity;
             else if (_hediffs.TryGetValue(pawn.thingIDNumber, out hdiff))
-            {
                 if (hdiff != null)
                 {
-                    hdiff.Severity = severity; return;
+                    hdiff.Severity = severity;
+                    return;
                 }
-            }
 
             var firstHediffOfDef = pawn.health.hediffSet.GetFirstHediffOfDef(hdDef);
             if (firstHediffOfDef != null)
@@ -62,7 +58,7 @@ namespace PumpingSteel.Tools
                 firstHediffOfDef.Severity = severity;
                 pawn.health.AddHediff(firstHediffOfDef);
             }
-            
+
             _hediffs.Add(pawn.thingIDNumber, firstHediffOfDef);
         }
     }

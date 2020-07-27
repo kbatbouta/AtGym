@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using HarmonyLib;
-using PumpingSteel.Fitness;
-using PumpingSteel.Tools;
+﻿using PumpingSteel.Tools;
 using RimWorld;
 using UnityEngine;
-using UnityEngine.UI;
 using Verse;
-using Verse.Sound;
-using Text = Verse.Text;
 
 namespace PumpingSteel.GymUI
 {
     public class Tab_InspecterFitnessDebuger : ITab_BasePlus
     {
         public Vector2 Size = new Vector2(300f, 500f);
-
-        public override bool IsVisible => SelPawn.RaceProps.Humanlike && Prefs.DevMode;
 
         public Tab_InspecterFitnessDebuger()
         {
@@ -27,6 +16,8 @@ namespace PumpingSteel.GymUI
 
             size = Size;
         }
+
+        public override bool IsVisible => SelPawn.RaceProps.Humanlike && Prefs.DevMode;
 
         public override void TabUpdate()
         {
@@ -45,7 +36,7 @@ namespace PumpingSteel.GymUI
 
                 Widgets.DrawLine(new Vector2(10, yOffset), new Vector2(290f, yOffset), Color.white, 2f);
                 yOffset += 5;
-            
+
                 Widgets.Label(new Rect(10, yOffset, 280f, 35), "Set body size");
                 yOffset += 25;
 
@@ -65,18 +56,18 @@ namespace PumpingSteel.GymUI
                 if (Widgets.ButtonText(new Rect(220, yOffset, 70, 30), "fat")) SelPawn.SetBodySize(BodyTypeDefOf.Fat);
 
                 yOffset += 35;
-                
+
                 Widgets.DrawLine(new Vector2(10, yOffset), new Vector2(290f, yOffset), Color.white, 2f);
                 yOffset += 5;
 
                 Text.Font = GameFont.Tiny;
-                
+
                 if (Widgets.ButtonText(new Rect(10, yOffset, 70, 30), "Toggle Logging"))
                     unit.DEBUG = !unit.DEBUG;
 
                 Widgets.DrawLine(new Vector2(10, yOffset), new Vector2(290f, yOffset), Color.white, 2f);
                 yOffset += 5;
-                
+
                 Widgets.Label(new Rect(220, yOffset, 70, 30), "Stamina Level" + unit.staminaLevel);
                 yOffset += 25;
                 Widgets.Label(new Rect(220, yOffset, 70, 30), "Stamina Level" + unit.maxStaminaLevel);

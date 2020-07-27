@@ -1,12 +1,9 @@
-using UnityEngine;
 using Verse;
 
 namespace PumpingSteel.Fitness
 {
     public class FitnessBodyUnit : IFitnessUnit
     {
-        public override string LoadPostfix => "fitness";
-
         public FitnessBodyUnit()
         {
         }
@@ -14,6 +11,8 @@ namespace PumpingSteel.Fitness
         public FitnessBodyUnit(Pawn pawn) : base(pawn)
         {
         }
+
+        public override string LoadPostfix => "fitness";
 
         public override void ExposeData()
         {

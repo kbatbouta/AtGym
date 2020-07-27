@@ -1,12 +1,10 @@
-﻿using System;
-using PumpingSteel.Tools;
-using Verse;
+﻿using Verse;
 
 namespace PumpingSteel.Tools.Scribing
 {
     public class ScribeManager : GameComponent
     {
-        private int idCounter = 0;
+        private int idCounter;
 
         public ScribeManager(Game game)
         {

@@ -4,7 +4,7 @@ using Verse;
 namespace PumpingSteel.Core.Hediffs
 {
     /// <summary>
-    /// Container for Hediffs defs used by the mod
+    ///     Container for Hediffs defs used by the mod
     /// </summary>
     [DefOf]
     public class FitnessHediffsDefOf

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <TimeAssignmentDef>
+    <defName>Workout</defName>
+    <label>Workout</label>
+    <color>(185,85,85)</color>
+    <allowRest>true</allowRest>
+    <allowJoy>true</allowJoy>
+  </TimeAssignmentDef>
+
+</Defs>

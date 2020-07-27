@@ -1,57 +1,69 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using HarmonyLib;
-using JetBrains.Annotations;
-using PumpingSteel.Core;
 using PumpingSteel.Fitness;
-using PumpingSteel.Tools;
-using RimWorld;
 using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace PumpingSteel.GymUI
 {
     public class Gizmo_StaminaBar : Gizmo
     {
-        public StaminaUnit unit = null;
-
-        private readonly Texture2D FullShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.15f, 0.32f, 0.15f));
-
-        private readonly Texture2D LowShieldBarTex = SolidColorMaterials.NewSolidColorTexture(new Color(0.15f, 0.32f, 0.32f));
-
         private readonly Texture2D EmptyShieldBarTex = SolidColorMaterials.NewSolidColorTexture(Color.clear);
 
-        private float staminaLevel => unit?.staminaLevel ?? 0f;
+        private readonly Texture2D FullShieldBarTex =
+            SolidColorMaterials.NewSolidColorTexture(new Color(0.15f, 0.32f, 0.15f));
+
+        private readonly Texture2D LowShieldBarTex =
+            SolidColorMaterials.NewSolidColorTexture(new Color(0.15f, 0.32f, 0.32f));
+
+        public StaminaUnit unit;
 
         public Gizmo_StaminaBar(StaminaUnit unit)
         {
             this.unit = unit;
         }
-        
+
+        private float staminaLevel => unit?.staminaLevel ?? 0f;
+
         public override bool Visible => true;
 
         public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth)
         {
-            Rect rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
-            Rect rect2 = rect.ContractedBy(6f);
+            var rect = new Rect(topLeft.x, topLeft.y, GetWidth(maxWidth), 75f);
+            var rect2 = rect.ContractedBy(6f);
             Widgets.DrawWindowBackground(rect);
-            Rect rect3 = rect2;
+            var rect3 = rect2;
             rect3.height = rect.height / 2f;
             Text.Font = GameFont.Tiny;
             Widgets.Label(rect3, "Stamina (" + unit.CurStaminaMod + ")");
-            Rect rect4 = rect2;
+            var rect4 = rect2;
             rect4.yMin = rect2.y + rect2.height / 2f;
-            float fillPercent = unit.staminaLevel / unit.maxStaminaLevel;
+            var fillPercent = unit.staminaLevel / unit.maxStaminaLevel;
+            var tex = unit.CurStaminaMod != StaminaMod.Breathing ? FullShieldBarTex : LowShieldBarTex;
+
+            if (unit.DamageAlertCountDown > 0)
+            {
+                tex =  SolidColorMaterials.NewSolidColorTexture(new Color(
+                    Mathf.Clamp(unit.DamageAlertCountDown/10,0,1), 
+                    0.1f,
+                    0.1f));
+                unit.DamageAlertCountDown--;
+            }else if (unit.DangerAlertCountDown > 0)
+            {
+                tex =  SolidColorMaterials.NewSolidColorTexture(new Color(
+                    Mathf.Clamp(unit.DangerAlertCountDown/10,0,1),
+                    Mathf.Clamp(unit.DangerAlertCountDown/20,0,1),
+                    Mathf.Clamp(unit.DangerAlertCountDown/20,0,1)));
+                unit.DangerAlertCountDown--;
+            }
             
-            Widgets.FillableBar(rect4, fillPercent, unit.CurStaminaMod != StaminaMod.Breathing ? FullShieldBarTex : LowShieldBarTex, EmptyShieldBarTex, doBorder: false);
+            Widgets.FillableBar(rect4, fillPercent,
+                tex, EmptyShieldBarTex,
+                false);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(rect4, (unit.staminaLevel * 100f).ToString("F0") + " / " + (unit.maxStaminaLevel * 100f).ToString("F0"));
+            Widgets.Label(rect4,
+                (unit.staminaLevel * 100f).ToString("F0") + " / " + (unit.maxStaminaLevel * 100f).ToString("F0"));
             Text.Anchor = TextAnchor.UpperLeft;
-            
+
             return new GizmoResult(GizmoState.Clear);
         }
 

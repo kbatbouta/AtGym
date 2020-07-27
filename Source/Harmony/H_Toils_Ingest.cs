@@ -21,7 +21,7 @@ namespace PumpingSteel.Patches
         private static readonly MethodInfo mtarg = AccessTools.Method("H_Toils_Ingest:HungerReduced");
 
 
-        private static FieldInfo pawnInfo =
+        private static readonly FieldInfo pawnInfo =
             (PatchProcessor.GetOriginalInstructions(typeof(Toils_Ingest).GetMethod("FinalizeIngest"))
                 .First(inst => inst.opcode == OpCodes.Ldftn).operand as MethodInfo)!.DeclaringType.GetField("ingester");
 
@@ -33,11 +33,9 @@ namespace PumpingSteel.Patches
         public static void HungerReduced(Pawn ingestor, float amount)
         {
             if (ingestor == null) return;
-            
+
             if (Finder.StaminaTracker.TryGet(ingestor, out StaminaUnit sUnit))
-            {
                 sUnit.staminaLevel = Mathf.Clamp(sUnit.staminaLevel - 0.05f, 0f, sUnit.maxStaminaLevel);
-            }
         }
 
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

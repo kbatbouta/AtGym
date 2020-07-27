@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+    <PawnCapacityDef>
+        <defName>StaminaCapacity</defName>
+        <label>Stamina</label>
+        <description>How the stamina level will effect this pawn.</description>
+        <workerClass>PumpingSteel.Core.Capacities.CapacitiesWorkers.PawnCapacityWorker_Stamina</workerClass>
+        <listOrder>2</listOrder>
+        <showOnHumanlikes>true</showOnHumanlikes>
+        <showOnAnimals>true</showOnAnimals>
+        <showOnMechanoids>false</showOnMechanoids>
+        <showOnCaravanHealthTab>true</showOnCaravanHealthTab>
+    </PawnCapacityDef>
+</Defs>

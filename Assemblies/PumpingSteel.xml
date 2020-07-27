@@ -4,25 +4,25 @@
         <name>PumpingSteel</name>
     </assembly>
     <members>
-        <member name="T:PumpingSteel.Core.Hediffs.FitnessHediffsDefOf">
-            <summary>
-            Container for Hediffs defs used by the mod
-            </summary>
-        </member>
         <member name="T:PumpingSteel.Core.Capacities.FitnessCapacitiesDefOf">
             <summary>
-            Container for new capacities defs used by the mod
+                Container for new capacities defs used by the mod
+            </summary>
+        </member>
+        <member name="T:PumpingSteel.Core.Hediffs.FitnessHediffsDefOf">
+            <summary>
+                Container for Hediffs defs used by the mod
             </summary>
         </member>
         <member name="T:PumpingSteel.Fitness.IFitnessTracker`1">
             <summary>
-            FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
-            It provide caching and scribing operation. 
+                FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
+                It provide caching and scribing operation.
             </summary>
         </member>
         <member name="M:PumpingSteel.Fitness.IFitnessTracker`1.TryGet(Verse.Pawn,`0@)">
             <summary>
-            Provide null safe and access to FitnessUnits.
+                Provide null safe and access to FitnessUnits.
             </summary>
             <param name="pawn">SelPawn</param>
             <param name="unit">Output FitnessUnit for said pawn</param>
@@ -30,25 +30,25 @@
         </member>
         <member name="M:PumpingSteel.Fitness.IFitnessTracker`1.Register(`0)">
             <summary>
-            Used to register a new pawn with the tracker.
-            NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
+                Used to register a new pawn with the tracker.
+                NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
             </summary>
             <param name="unit"></param>
         </member>
         <member name="T:PumpingSteel.Fitness.StaminaTracker">
             <summary>
-            FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
-            It provide caching and scribing operation. 
+                FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
+                It provide caching and scribing operation.
             </summary>
         </member>
         <member name="P:PumpingSteel.Fitness.StaminaTracker.Units">
             <summary>
-            Return all available FitnessUnits. 
+                Return all available FitnessUnits.
             </summary>
         </member>
         <member name="M:PumpingSteel.Fitness.StaminaTracker.TryGet(Verse.Pawn,PumpingSteel.Fitness.StaminaUnit@)">
             <summary>
-            Provide null safe and access to FitnessUnits.
+                Provide null safe and access to FitnessUnits.
             </summary>
             <param name="pawn">SelPawn</param>
             <param name="unit">Output FitnessUnit for said pawn</param>
@@ -56,25 +56,25 @@
         </member>
         <member name="M:PumpingSteel.Fitness.StaminaTracker.Register(PumpingSteel.Fitness.StaminaUnit)">
             <summary>
-            Used to register a new pawn with the tracker.
-            NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
+                Used to register a new pawn with the tracker.
+                NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
             </summary>
             <param name="unit"></param>
         </member>
         <member name="T:PumpingSteel.Fitness.FitnessTracker">
             <summary>
-            FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
-            It provide caching and scribing operation. 
+                FitnessTracker is WorldComponent used as container and shell for storing FitnessUnits for each pawn.
+                It provide caching and scribing operation.
             </summary>
         </member>
         <member name="P:PumpingSteel.Fitness.FitnessTracker.Units">
             <summary>
-            Return all available FitnessUnits. 
+                Return all available FitnessUnits.
             </summary>
         </member>
         <member name="M:PumpingSteel.Fitness.FitnessTracker.TryGet(Verse.Pawn,PumpingSteel.Fitness.FitnessBodyUnit@)">
             <summary>
-            Provide null safe and access to FitnessUnits.
+                Provide null safe and access to FitnessUnits.
             </summary>
             <param name="pawn">SelPawn</param>
             <param name="unit">Output FitnessUnit for said pawn</param>
@@ -82,8 +82,8 @@
         </member>
         <member name="M:PumpingSteel.Fitness.FitnessTracker.Register(PumpingSteel.Fitness.FitnessBodyUnit)">
             <summary>
-            Used to register a new pawn with the tracker.
-            NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
+                Used to register a new pawn with the tracker.
+                NOTE: field FitnessUnit.pawn must be not null and set to a pawn.
             </summary>
             <param name="unit"></param>
         </member>
