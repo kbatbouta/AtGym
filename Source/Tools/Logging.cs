@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel
 {

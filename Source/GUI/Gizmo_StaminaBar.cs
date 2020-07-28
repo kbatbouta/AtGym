@@ -1,6 +1,11 @@
+#region
+
+using System;
 using PumpingSteel.Fitness;
 using UnityEngine;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.GymUI
 {
@@ -33,7 +38,7 @@ namespace PumpingSteel.GymUI
             var rect3 = rect2;
             rect3.height = rect.height / 2f;
             Text.Font = GameFont.Tiny;
-            Widgets.Label(rect3, "Stamina (" + unit.CurStaminaMod + ")");
+            Widgets.Label(rect3, "Stamina (" + unit.CurStaminaMod + ")" + " " + Math.Round(unit.speedOffset, 2) + " " + Math.Round(unit.speedModifier, 2));
             var rect4 = rect2;
             rect4.yMin = rect2.y + rect2.height / 2f;
             var fillPercent = unit.staminaLevel / unit.maxStaminaLevel;
@@ -79,13 +84,13 @@ namespace PumpingSteel.GymUI
         public static void Notify_AlertDanger(StaminaUnit unit)
         {
             unit.extras.DangerAlertCountDown += 10;
-            unit.extras.GUIlastTick = unit.extras.GUIlastTick;
+            unit.extras.GUIlastTick = Finder.GameTicks;
         }
 
         public static void Notify_AlertDamage(StaminaUnit unit)
         {
             unit.extras.DamageAlertCountDown += 10;
-            unit.extras.GUIlastTick = unit.extras.GUIlastTick;
+            unit.extras.GUIlastTick = Finder.GameTicks;
         }
 
 

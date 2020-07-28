@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -7,6 +9,8 @@ using PumpingSteel.Fitness;
 using RimWorld;
 using UnityEngine;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Patches
 {
@@ -33,9 +37,6 @@ namespace PumpingSteel.Patches
         public static void HungerReduced(Pawn ingestor, float amount)
         {
             if (ingestor == null) return;
-
-            if (Finder.StaminaTracker.TryGet(ingestor, out StaminaUnit sUnit))
-                sUnit.staminaLevel = Mathf.Clamp(sUnit.staminaLevel - 0.05f, 0f, sUnit.maxStaminaLevel);
         }
 
         private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)

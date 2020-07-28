@@ -1,9 +1,13 @@
+#region
+
 using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using PumpingSteel.Fitness;
 using PumpingSteel.GymUI;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Patches
 {

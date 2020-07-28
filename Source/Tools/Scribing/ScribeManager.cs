@@ -1,4 +1,8 @@
-﻿using Verse;
+﻿#region
+
+using Verse;
+
+#endregion
 
 namespace PumpingSteel.Tools.Scribing
 {

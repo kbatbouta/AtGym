@@ -1,7 +1,8 @@
-﻿using PumpingSteel.Fitness;
-using PumpingSteel.Tools;
-using RimWorld;
-using Verse;
+﻿#region
+
+using PumpingSteel.Fitness;
+
+#endregion
 
 namespace PumpingSteel.Core
 {

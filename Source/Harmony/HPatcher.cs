@@ -1,4 +1,8 @@
-﻿using HarmonyLib;
+﻿#region
+
+using HarmonyLib;
+
+#endregion
 
 namespace PumpingSteel.Patches
 {

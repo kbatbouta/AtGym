@@ -1,9 +1,12 @@
+#region
+
 using HarmonyLib;
 using PumpingSteel.Fitness;
 using PumpingSteel.GymUI;
-using RimWorld;
 using UnityEngine;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Patches
 {
@@ -12,8 +15,11 @@ namespace PumpingSteel.Patches
     {
         public static void Postfix(Pawn __instance)
         {
-            if (Finder.StaminaTracker.TryGet(__instance, out StaminaUnit sUnit))
-                Gizmo_StaminaBar.Notify_AlertDanger(sUnit);
+            if (Finder.StaminaTracker.TryGet(__instance, out StaminaUnit unit))
+            {
+                Gizmo_StaminaBar.Notify_AlertDanger(unit);
+                unit.staminaLevel = Mathf.Clamp(unit.staminaLevel + 0.03f, 0f, unit.maxStaminaLevel);
+            }
         }
     }
 
@@ -22,8 +28,11 @@ namespace PumpingSteel.Patches
     {
         public static void Postfix(Pawn __instance)
         {
-            if (Finder.StaminaTracker.TryGet(__instance, out StaminaUnit sUnit))
-                Gizmo_StaminaBar.Notify_AlertDamage(sUnit);
+            if (Finder.StaminaTracker.TryGet(__instance, out StaminaUnit unit))
+            {
+                Gizmo_StaminaBar.Notify_AlertDamage(unit);
+                unit.staminaLevel = Mathf.Clamp(unit.staminaLevel + 0.04f, 0f, unit.maxStaminaLevel);
+            }
         }
     }
 }

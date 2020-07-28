@@ -1,4 +1,8 @@
+#region
+
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Fitness
 {
@@ -15,21 +19,21 @@ namespace PumpingSteel.Fitness
     {
         public StaminaMod CurStaminaMod = StaminaMod.Nothing;
 
-        public class Extras
-        {
-            public int DamageAlertCountDown = 0;
-            public int DangerAlertCountDown = 0;
-
-            public int GUIlastTick = -1;
-        }
-
         public Extras extras = new Extras();
-
-        public float staminaLevel = 1.0f;
-        public float staminaOffset = 0.0f;
 
         public float maxStaminaLevel = 1.0f;
         public float oldStaminaLevel = 1.0f;
+
+        public float staminaLevel = 1.0f;
+        public float staminaOffset =  Rand.Range(0f, 1.0f);
+        
+        public float speedModifier = 1f;
+        public float speedOffset = 0.0f;
+        public float breathing = 1.0f;
+        public float bloodPumping = 1.0f;
+
+        public float meleeMofidier = 1.0f;
+        public float hungerMofidier = 1.0f;
 
         public StaminaUnit()
         {
@@ -50,6 +54,18 @@ namespace PumpingSteel.Fitness
             Scribe_Values.Look(ref maxStaminaLevel, "unitMaxStaminaLevel");
             Scribe_Values.Look(ref CurStaminaMod, "unitStaminaMod");
             Scribe_Values.Look(ref staminaOffset, "unitStaminaOffset");
+            Scribe_Values.Look(ref staminaOffset, "unitStaminaXP");
+            
+            Scribe_Values.Look(ref speedOffset, "unitMoveSpeedOffset");
+            Scribe_Values.Look(ref speedModifier, "unitMoveSpeedModifier");
+        }
+
+        public class Extras
+        {
+            public int DamageAlertCountDown = 0;
+            public int DangerAlertCountDown = 0;
+
+            public int GUIlastTick = -1;
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿using PumpingSteel.Tools;
+﻿#region
+
+using PumpingSteel.Tools;
 using RimWorld;
 using UnityEngine;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.GymUI
 {

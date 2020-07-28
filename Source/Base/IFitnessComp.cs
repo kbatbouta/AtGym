@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using PumpingSteel.Fitness;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Core
 {

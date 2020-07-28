@@ -1,6 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using RimWorld;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Fitness
 {

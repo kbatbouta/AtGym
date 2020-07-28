@@ -1,4 +1,8 @@
-﻿using RimWorld;
+﻿#region
+
+using RimWorld;
+
+#endregion
 
 namespace PumpingSteel.GymUI
 {

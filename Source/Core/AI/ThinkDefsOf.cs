@@ -1,5 +1,9 @@
+#region
+
 using RimWorld;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Core.AI.ThinkDefs
 {

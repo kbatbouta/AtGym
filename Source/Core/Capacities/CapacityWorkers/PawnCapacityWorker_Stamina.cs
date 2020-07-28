@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
-using PumpingSteel.Fitness;
+﻿#region
+
+using System.Collections.Generic;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Core.Capacities.CapacitiesWorkers
 {

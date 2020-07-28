@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Linq;
 using PumpingSteel.GymUI;
 using PumpingSteel.Patches;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel
 {

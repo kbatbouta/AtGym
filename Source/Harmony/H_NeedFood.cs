@@ -1,7 +1,10 @@
-﻿using HarmonyLib;
-using PumpingSteel.Fitness;
+﻿#region
+
+using HarmonyLib;
 using RimWorld;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Patches
 {

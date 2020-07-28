@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using RimWorld.Planet;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Fitness
 {

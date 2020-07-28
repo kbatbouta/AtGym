@@ -1,5 +1,9 @@
-﻿using RimWorld.Planet;
+﻿#region
+
+using RimWorld.Planet;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Fitness
 {

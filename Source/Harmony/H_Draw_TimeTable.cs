@@ -1,4 +1,5 @@
-using System.Collections;
+#region
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -10,12 +11,14 @@ using UnityEngine;
 using Verse;
 using Verse.Sound;
 
+#endregion
+
 namespace PumpingSteel.Patches
 {
     [HarmonyPatch(typeof(TimeAssignmentSelector), nameof(TimeAssignmentSelector.DrawTimeAssignmentSelectorGrid))]
     public static class H_Draw_TimeTable
     {
-        private static MethodInfo mrect = AccessTools.Method("H_Draw_TimeTable:GetFitnessRect");
+        private static readonly MethodInfo mrect = AccessTools.Method("H_Draw_TimeTable:GetFitnessRect");
 
         private static void DrawTimeAssignmentSelectorFor(Rect rect, TimeAssignmentDef ta)
         {

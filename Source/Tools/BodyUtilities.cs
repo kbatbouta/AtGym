@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using PumpingSteel.Core.Hediffs;
 using RimWorld;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Tools
 {

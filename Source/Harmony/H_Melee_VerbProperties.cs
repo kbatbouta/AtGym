@@ -1,9 +1,13 @@
-﻿using HarmonyLib;
+﻿#region
+
+using HarmonyLib;
 using PumpingSteel.Fitness;
 using PumpingSteel.GymUI;
 using RimWorld;
 using UnityEngine;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel.Patches
 {
@@ -17,6 +21,11 @@ namespace PumpingSteel.Patches
             VerbProperties __instance)
         {
             if (!__instance.IsMeleeAttack) return;
+
+            if (Finder.StaminaTracker.TryGet(attacker, out StaminaUnit unit))
+            {
+                __result = __result * unit.meleeMofidier + unit.staminaOffset;
+            }
         }
     }
 
@@ -29,7 +38,10 @@ namespace PumpingSteel.Patches
             if (__result == false) return;
 
             var pawn = __instance.Pawn;
-            if (Finder.StaminaTracker.TryGet(pawn, out StaminaUnit sUnit)) Gizmo_StaminaBar.Notify_AlertDanger(sUnit);
+            if (Finder.StaminaTracker.TryGet(pawn, out StaminaUnit sUnit))
+            {
+                Gizmo_StaminaBar.Notify_AlertDanger(sUnit);
+            }
         }
     }
 }

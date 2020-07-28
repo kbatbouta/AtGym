@@ -1,5 +1,10 @@
+#region
+
+using System;
 using System.Collections.Generic;
 using Verse.AI;
+
+#endregion
 
 namespace PumpingSteel.Core.AI.ThinkDefs.JobDrivers
 {
@@ -7,12 +12,12 @@ namespace PumpingSteel.Core.AI.ThinkDefs.JobDrivers
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

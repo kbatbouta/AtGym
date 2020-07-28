@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using HarmonyLib;
 using PumpingSteel.Fitness;
 using PumpingSteel.Tools.Scribing;
 using RimWorld;
 using Verse;
+
+#endregion
 
 namespace PumpingSteel
 {
