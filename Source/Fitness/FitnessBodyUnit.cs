@@ -1,4 +1,6 @@
+using RimWorld;
 using Verse;
+using Verse.Noise;
 
 namespace PumpingSteel.Fitness
 {

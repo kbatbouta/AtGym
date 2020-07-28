@@ -12,12 +12,6 @@ namespace PumpingSteel.Patches
         public static void Postfix(ref float __result, Pawn ___pawn)
         {
             if (___pawn == null) return;
-
-            if (Finder.FitnessTracker.TryGet(___pawn, out var unit)) __result = __result;
-
-            if (Finder.StaminaTracker.TryGet(___pawn, out StaminaUnit sUnit))
-                if (sUnit.CurStaminaMod != StaminaMod.Resting)
-                    __result *= 1.2f;
         }
     }
 
@@ -28,10 +22,6 @@ namespace PumpingSteel.Patches
         public static void Postfix(ref float __result, Pawn ___pawn)
         {
             if (___pawn == null) return;
-
-            if (Finder.StaminaTracker.TryGet(___pawn, out StaminaUnit sUnit))
-                if (sUnit.CurStaminaMod != StaminaMod.Resting)
-                    __result *= 1.2f;
         }
     }
 }

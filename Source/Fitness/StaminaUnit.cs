@@ -15,14 +15,21 @@ namespace PumpingSteel.Fitness
     {
         public StaminaMod CurStaminaMod = StaminaMod.Nothing;
 
-        public float maxStaminaLevel = 1.0f;
-        public float oldstaminaLevel = 1.0f;
+        public class Extras
+        {
+            public int DamageAlertCountDown = 0;
+            public int DangerAlertCountDown = 0;
+
+            public int GUIlastTick = -1;
+        }
+
+        public Extras extras = new Extras();
+
+        public float staminaLevel = 1.0f;
         public float staminaOffset = 0.0f;
-        public float staminaLevel;
-        
-        public int DamageAlertCountDown = 0;
-        public int DangerAlertCountDown = 0;
-        
+
+        public float maxStaminaLevel = 1.0f;
+        public float oldStaminaLevel = 1.0f;
 
         public StaminaUnit()
         {
@@ -39,7 +46,7 @@ namespace PumpingSteel.Fitness
             base.ExposeData();
 
             Scribe_Values.Look(ref staminaLevel, "unitStaminaLevel");
-            Scribe_Values.Look(ref oldstaminaLevel, "unitOldStaminaLevel");
+            Scribe_Values.Look(ref oldStaminaLevel, "unitOldStaminaLevel");
             Scribe_Values.Look(ref maxStaminaLevel, "unitMaxStaminaLevel");
             Scribe_Values.Look(ref CurStaminaMod, "unitStaminaMod");
             Scribe_Values.Look(ref staminaOffset, "unitStaminaOffset");

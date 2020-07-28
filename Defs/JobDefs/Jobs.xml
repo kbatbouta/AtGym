@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <JobDef>
+      <defName>FitnessJoggingWith</defName>
+      <driverClass>PumpingSteel.Core.AI.ThinkDefs.JobDrivers.JobDriver_JoggingWith</driverClass>
+      <alwaysShowWeapon>true</alwaysShowWeapon>
+      <reportString>Jogging with TargetA.</reportString>
+    </JobDef>
+    
+    <JobDef>
+        <defName>FitnessJogging</defName>
+        <driverClass>PumpingSteel.Core.AI.ThinkDefs.JobDrivers.JobDriver_Jogging</driverClass>        
+        <reportString>Jogging.</reportString>
+    </JobDef>
+    
+    <JobDef>
+        <defName>FitnessPushup</defName>
+        <driverClass>PumpingSteel.Core.AI.ThinkDefs.JobDrivers.JobDriver_Pushups</driverClass>
+        <reportString>Doing pushups.</reportString>
+    </JobDef>
+    
+    <JobDef>
+        <defName>FitnessCrunches</defName>
+        <driverClass>PumpingSteel.Core.AI.ThinkDefs.JobDrivers.JobDriver_Crunches</driverClass>
+        <reportString>Doing crunches.</reportString>
+    </JobDef>
+</Defs>

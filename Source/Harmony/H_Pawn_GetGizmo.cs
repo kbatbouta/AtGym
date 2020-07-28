@@ -19,7 +19,7 @@ namespace PumpingSteel.Patches
                 if (_cashable.TryGetValue(__instance.thingIDNumber, out Gizmo gizmo))
                 {
                     var __tmp = __result.ToList();
-                    
+
                     __tmp.Insert(0, gizmo);
                     __result = __tmp;
                 }

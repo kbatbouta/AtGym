@@ -8,50 +8,38 @@ namespace PumpingSteel.Core
 {
     public class StaminaComp : IFitnessComp<StaminaUnit>
     {
-        private const float runningCost = -0.015f;
-        private const float walkingCost = -0.015f;
-        private const float restingCost = 0.035f;
+        private int ticks = 0;
 
-        private const float breathCost = 0.015f;
-        private const float breathCostMovingModifer = 0.015f;
-        
-        private bool IsMoving;
-        private int lastPuff = 0;
-        
         private StaminaMod oldMod;
-
-
-        private IntVec3 position = IntVec3.Zero;
 
         public override void DoTickRare()
         {
-            Unit.maxStaminaLevel = SelPawn.health.capacities.GetLevel(FitnessCapacitiesDefOf.StaminaCapacity) + Unit.staminaOffset;
-            Unit.oldstaminaLevel = Unit.staminaLevel;
-
             oldMod = Unit.CurStaminaMod;
 
             StartStaminaUpdate();
+
+            ticks++;
         }
+
 
         public void StartStaminaUpdate()
         {
-            IsMoving = SelPawn.pather.MovingNow &&
-                       SelPawn.CurJobDef != JobDefOf.Wait_Combat &&
-                       SelPawn.CurJobDef != JobDefOf.Wait_MaintainPosture &&
-                       SelPawn.CurJobDef != JobDefOf.Wait &&
-                       SelPawn.CurJobDef != JobDefOf.Wait_Wander &&
-                       SelPawn.CurJobDef != JobDefOf.GotoWander;
+            if (ticks % 4 == 0)
+                Unit.maxStaminaLevel = SelPawn.health.capacities.GetLevel(FitnessCapacitiesDefOf.StaminaCapacity) +
+                                       Unit.staminaOffset;
+
+            var curJob = SelPawn.CurJobDef;
 
             switch (Unit.CurStaminaMod)
             {
                 case StaminaMod.Running:
                     Running();
                     break;
+                case StaminaMod.Walking when SelPawn.pather.MovingNow:
+                    Walking();
+                    break;
                 case StaminaMod.Breathing:
                     Breathing();
-                    break;
-                case StaminaMod.Walking:
-                    Walking();
                     break;
                 default:
                     Resting();
@@ -61,44 +49,22 @@ namespace PumpingSteel.Core
 
         private void Notify_ModChanged(StaminaMod oldMod)
         {
-           
         }
 
         internal void Running()
         {
-            if (0.15f <= Unit.staminaLevel && Unit.staminaLevel < (IsHuman ? 1 : 0.9) && IsMoving)
-                Unit.CurStaminaMod = StaminaMod.Walking;
-            if (0.15f <= Unit.staminaLevel && !IsMoving) Unit.CurStaminaMod = StaminaMod.Resting;
-            if (Unit.staminaLevel < 0.15f) Unit.CurStaminaMod = StaminaMod.Breathing;
-
-            FinalizeStaminaUpdate(runningCost - Mathf.Min(IsAnimal ? SelPawn.BodySize / 8 : 0f, 0.08f));
         }
 
         internal void Walking()
         {
-            if (Unit.staminaLevel >= (IsHuman ? 1 : 0.9) && IsMoving) Unit.CurStaminaMod = StaminaMod.Running;
-            if (Unit.staminaLevel >= 0.15f && !IsMoving) Unit.CurStaminaMod = StaminaMod.Resting;
-            if (0.15f > Unit.staminaLevel) Unit.CurStaminaMod = StaminaMod.Breathing;
-
-            FinalizeStaminaUpdate(walkingCost - Mathf.Min(IsAnimal ? SelPawn.BodySize / 8f : 0f, 0.06f));
         }
 
         internal void Breathing()
         {
-            if (Unit.staminaLevel >= (IsHuman ? 1 : 0.9) && IsMoving) Unit.CurStaminaMod = StaminaMod.Running;
-            if (Unit.staminaLevel >= 0.85 && IsMoving) Unit.CurStaminaMod = StaminaMod.Walking;
-            if (Unit.staminaLevel >= 0.85 && !IsMoving) Unit.CurStaminaMod = StaminaMod.Resting;
-
-            FinalizeStaminaUpdate(breathCost + (IsMoving ? breathCostMovingModifer : 0f));
         }
 
         internal void Resting()
         {
-            if (Unit.staminaLevel >= (IsHuman ? 1 : 0.9) && IsMoving) Unit.CurStaminaMod = StaminaMod.Running;
-            if (0.15f <= Unit.staminaLevel && Unit.staminaLevel <= (IsHuman ? 1 : 0.5) && IsMoving)
-                Unit.CurStaminaMod = StaminaMod.Walking;
-
-            FinalizeStaminaUpdate(restingCost - (SelPawn.CurJobDef == JobDefOf.GotoWander ? 0.04f : 0f));
         }
 
         private void FinalizeStaminaUpdate(float delta)
@@ -113,7 +79,7 @@ namespace PumpingSteel.Core
                 Log.TryOpenLogWindow();
                 Logging.Line("pawn: " + SelPawn.Name.ToString() + " " + delta + " \t" + Unit.CurStaminaMod + "\t <- " +
                              oldMod);
-                Logging.Line("stamina: " + Unit.staminaLevel + "\t " + Unit.oldstaminaLevel);
+                Logging.Line("stamina: " + _cashedStaminaLevel + "\t " + Unit.oldStaminaLevel);
                 Logging.Line(">-------- --------------- ---------<");
                 Finder.TickManager.Pause();
             }
@@ -128,6 +94,21 @@ namespace PumpingSteel.Core
         public override bool ShouldDisable()
         {
             return false;
+        }
+
+        public void Notify_DestinationChanged()
+        {
+            if (Unit.DEBUG) Logging.Warning("Hey" + SelPawn.Name.ToStringFull);
+        }
+
+        public void Notify_StartedPath()
+        {
+            if (Unit.DEBUG) Logging.Warning("Hey" + SelPawn.Name.ToStringFull);
+        }
+
+        public void Notify_DestinationSet()
+        {
+            if (Unit.DEBUG) Logging.Warning("Hey" + SelPawn.Name.ToStringFull);
         }
     }
 }

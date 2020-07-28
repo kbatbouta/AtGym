@@ -11,8 +11,8 @@ namespace PumpingSteel.Core.Capacities.CapacitiesWorkers
         {
             var value = base.CalculateCapacityLevel(diffSet, impactors);
 
-            if (Finder.StaminaTracker.TryGet(diffSet.pawn, out StaminaUnit unit))
-                value = (value + unit.maxStaminaLevel) / 2f;
+            // if (Finder.StaminaTracker.TryGet(diffSet.pawn, out StaminaUnit unit))
+            //    value =  (value + unit.maxStaminaLevel) / 2f;
 
             return value;
         }

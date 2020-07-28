@@ -39,22 +39,31 @@ namespace PumpingSteel.GymUI
             var fillPercent = unit.staminaLevel / unit.maxStaminaLevel;
             var tex = unit.CurStaminaMod != StaminaMod.Breathing ? FullShieldBarTex : LowShieldBarTex;
 
-            if (unit.DamageAlertCountDown > 0)
+            if ((unit.extras.DamageAlertCountDown > 0 || unit.extras.DangerAlertCountDown > 0) &&
+                Finder.GameTicks - unit.extras.GUIlastTick > 30)
             {
-                tex =  SolidColorMaterials.NewSolidColorTexture(new Color(
-                    Mathf.Clamp(unit.DamageAlertCountDown/10,0,1), 
+                unit.extras.DamageAlertCountDown = 0;
+                unit.extras.DangerAlertCountDown = 0;
+                unit.extras.GUIlastTick = unit.extras.GUIlastTick;
+            }
+
+            if (unit.extras.DamageAlertCountDown > 0)
+            {
+                tex = SolidColorMaterials.NewSolidColorTexture(new Color(
+                    Mathf.Clamp(unit.extras.DamageAlertCountDown / 10, 0, 1),
                     0.1f,
                     0.1f));
-                unit.DamageAlertCountDown--;
-            }else if (unit.DangerAlertCountDown > 0)
-            {
-                tex =  SolidColorMaterials.NewSolidColorTexture(new Color(
-                    Mathf.Clamp(unit.DangerAlertCountDown/10,0,1),
-                    Mathf.Clamp(unit.DangerAlertCountDown/20,0,1),
-                    Mathf.Clamp(unit.DangerAlertCountDown/20,0,1)));
-                unit.DangerAlertCountDown--;
+                unit.extras.DamageAlertCountDown--;
             }
-            
+            else if (unit.extras.DangerAlertCountDown > 0)
+            {
+                tex = SolidColorMaterials.NewSolidColorTexture(new Color(
+                    Mathf.Clamp(unit.extras.DangerAlertCountDown / 10, 0, 1),
+                    0.1f,
+                    0.1f));
+                unit.extras.DangerAlertCountDown--;
+            }
+
             Widgets.FillableBar(rect4, fillPercent,
                 tex, EmptyShieldBarTex,
                 false);
@@ -66,6 +75,19 @@ namespace PumpingSteel.GymUI
 
             return new GizmoResult(GizmoState.Clear);
         }
+
+        public static void Notify_AlertDanger(StaminaUnit unit)
+        {
+            unit.extras.DangerAlertCountDown += 10;
+            unit.extras.GUIlastTick = unit.extras.GUIlastTick;
+        }
+
+        public static void Notify_AlertDamage(StaminaUnit unit)
+        {
+            unit.extras.DamageAlertCountDown += 10;
+            unit.extras.GUIlastTick = unit.extras.GUIlastTick;
+        }
+
 
         public override float GetWidth(float maxWidth)
         {

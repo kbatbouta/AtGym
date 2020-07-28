@@ -5,8 +5,8 @@
     <defName>Workout</defName>
     <label>Workout</label>
     <color>(185,85,85)</color>
-    <allowRest>true</allowRest>
-    <allowJoy>true</allowJoy>
+    <allowRest>false</allowRest>
+    <allowJoy>false</allowJoy>
   </TimeAssignmentDef>
 
 </Defs>

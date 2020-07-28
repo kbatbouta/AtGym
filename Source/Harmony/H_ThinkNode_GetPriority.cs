@@ -5,29 +5,36 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
+using JetBrains.Annotations;
 using PumpingSteel.Core.AI.ThinkDefs;
 using RimWorld;
 using Verse;
 
 namespace PumpingSteel.Patches
 {
-    
+    /// <summary>
+    /// Fix for the infamous "return not implemented Exception" in each of the main roots (GetPriority) for each possible timeslot activity.
+    /// The solution is to deny entry to this tree if the current time slot is Workout to avoid the error. 
+    /// </summary>
     [HarmonyPatch]
     public class H_JobGiver_Work_GetPriority
     {
-        static IEnumerable<MethodBase> TargetMethods()
+        private static IEnumerable<MethodBase> TargetMethods()
         {
-            yield return AccessTools.Method("JobGiver_GetRest:GetPriority",new []{typeof(Pawn)});
-            yield return AccessTools.Method("JobGiver_Work:GetPriority",new []{typeof(Pawn)});
-            yield return AccessTools.Method("ThinkNode_Priority_GetJoy:GetPriority",new []{typeof(Pawn)});
+            yield return AccessTools.Method("JobGiver_GetRest:GetPriority", new[] {typeof(Pawn)});
+            yield return AccessTools.Method("JobGiver_Work:GetPriority", new[] {typeof(Pawn)});
+            yield return AccessTools.Method("ThinkNode_Priority_GetJoy:GetPriority", new[] {typeof(Pawn)});
         }
 
-        static bool Prefix(Pawn pawn, ref float __result)
+        [UsedImplicitly]
+        private static bool Prefix(Pawn pawn, ref float __result)
         {
             if (pawn?.timetable?.CurrentAssignment == FitnessTimeTableDefOf.Workout)
             {
-                __result = 0f; return false;
+                __result = 0f;
+                return false;
             }
+
             return true;
         }
     }

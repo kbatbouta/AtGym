@@ -121,7 +121,7 @@
                     </li>
                     <li>
                         <capacity>StaminaCapacity</capacity>
-                        <postFactor>0.95</postFactor>
+                        <postFactor>1.0</postFactor>
                     </li>
                 </capMods>
                 <statFactors>

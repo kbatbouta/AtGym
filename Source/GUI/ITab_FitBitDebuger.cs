@@ -29,7 +29,7 @@ namespace PumpingSteel.GymUI
         {
             if (Finder.StaminaTracker.TryGet(SelPawn, out var unit))
             {
-                var yOffset = 10f;
+                var yOffset = 35f;
                 var tyOffset = yOffset;
 
                 Text.Font = GameFont.Small;
@@ -62,16 +62,15 @@ namespace PumpingSteel.GymUI
 
                 Text.Font = GameFont.Tiny;
 
-                if (Widgets.ButtonText(new Rect(10, yOffset, 70, 30), "Toggle Logging"))
+                if (Widgets.ButtonText(new Rect(10, yOffset, 80, 30), "Toggle Logging"))
                     unit.DEBUG = !unit.DEBUG;
+
+                Widgets.Label(new Rect(110, yOffset, 70, 30), "Stamina Level " + unit.staminaLevel);
+                Widgets.Label(new Rect(220, yOffset, 70, 30), "Stamina Capacity " + unit.maxStaminaLevel);
+                yOffset += 45;
 
                 Widgets.DrawLine(new Vector2(10, yOffset), new Vector2(290f, yOffset), Color.white, 2f);
                 yOffset += 5;
-
-                Widgets.Label(new Rect(220, yOffset, 70, 30), "Stamina Level" + unit.staminaLevel);
-                yOffset += 25;
-                Widgets.Label(new Rect(220, yOffset, 70, 30), "Stamina Level" + unit.maxStaminaLevel);
-                yOffset += 25;
             }
             else
             {

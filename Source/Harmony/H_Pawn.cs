@@ -1,5 +1,6 @@
 using HarmonyLib;
 using PumpingSteel.Fitness;
+using PumpingSteel.GymUI;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -12,10 +13,7 @@ namespace PumpingSteel.Patches
         public static void Postfix(Pawn __instance)
         {
             if (Finder.StaminaTracker.TryGet(__instance, out StaminaUnit sUnit))
-            {
-                sUnit.DangerAlertCountDown += 10;
-                sUnit.staminaLevel = Mathf.Clamp(sUnit.staminaLevel + 0.03f, 0f, sUnit.maxStaminaLevel);
-            }
+                Gizmo_StaminaBar.Notify_AlertDanger(sUnit);
         }
     }
 
@@ -25,10 +23,7 @@ namespace PumpingSteel.Patches
         public static void Postfix(Pawn __instance)
         {
             if (Finder.StaminaTracker.TryGet(__instance, out StaminaUnit sUnit))
-            {
-                sUnit.staminaLevel = Mathf.Clamp(sUnit.staminaLevel + 0.04f, 0f, sUnit.maxStaminaLevel);
-                sUnit.DamageAlertCountDown += 10;
-            }
+                Gizmo_StaminaBar.Notify_AlertDamage(sUnit);
         }
     }
 }

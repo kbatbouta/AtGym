@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using PumpingSteel.Fitness;
+using PumpingSteel.GymUI;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -16,12 +17,9 @@ namespace PumpingSteel.Patches
             VerbProperties __instance)
         {
             if (!__instance.IsMeleeAttack) return;
-
-            if (Finder.StaminaTracker.TryGet(attacker, out StaminaUnit unit))
-                if (unit.staminaLevel > 0.5f) __result *= Mathf.Max(0.7f + unit.staminaLevel,1f);
         }
     }
-    
+
     [HarmonyPatch(typeof(Pawn_MeleeVerbs), nameof(Pawn_MeleeVerbs.TryMeleeAttack))]
     public static class H_Pawn_MeleeVerbTry
     {
@@ -31,11 +29,7 @@ namespace PumpingSteel.Patches
             if (__result == false) return;
 
             var pawn = __instance.Pawn;
-            if (Finder.StaminaTracker.TryGet(pawn, out StaminaUnit sUnit))
-            {
-                sUnit.staminaLevel = Mathf.Clamp(sUnit.staminaLevel - 0.15f, 0f, sUnit.maxStaminaLevel);
-                sUnit.DangerAlertCountDown += 10;
-            }
+            if (Finder.StaminaTracker.TryGet(pawn, out StaminaUnit sUnit)) Gizmo_StaminaBar.Notify_AlertDanger(sUnit);
         }
     }
 }

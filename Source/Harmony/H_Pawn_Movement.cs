@@ -7,47 +7,52 @@ using Verse.AI;
 
 namespace PumpingSteel.Patches
 {
-    [HarmonyPatch(typeof(Pawn_PathFollower), nameof(Pawn_PathFollower.StopDead))]
-    public static class H_PathFollower_StopDead
+    /// <summary>
+    /// When ever a pawn try to start a new pather cycle, this patch notify the staminaComp of
+    /// this event inoder to maintain a accurate tracking of movement.
+    /// </summary>
+    [HarmonyPatch(typeof(Pawn_PathFollower), "TrySetNewPath")]
+    public static class H_PathFollower_Destination
     {
-        public static void Prefix(Pawn_PathFollower __instance, Pawn ___pawn)
+        public static void Postfix(Pawn_PathFollower __instance, Pawn ___pawn, bool ___moving, bool __result)
         {
+            if (!__result) return;
+
+            StaminaComp staminaComp = ___pawn.TryGetComp<StaminaComp>();
+            staminaComp?.Notify_DestinationSet();
         }
     }
 
-    [HarmonyPatch(typeof(Pawn_PathFollower), nameof(Pawn_PathFollower.StopDead))]
+
+    /// <summary>
+    /// Patching the main interaction point between pawns_pathfollower and the pathfinder.
+    /// </summary>
+    [HarmonyPatch(typeof(Pawn_PathFollower), nameof(Pawn_PathFollower.StartPath))]
     public static class H_PathFollower_StartPath
     {
         public static void Postfix(Pawn ___pawn, bool ___moving)
         {
-            if (!___moving) return;
-
             StaminaComp staminaComp = ___pawn.TryGetComp<StaminaComp>();
-            staminaComp.StartStaminaUpdate();
+            staminaComp?.Notify_StartedPath();
         }
     }
 
+
+    /// <summary>
+    /// Used to patch the movement speed stats.
+    /// </summary>
     [HarmonyPatch(typeof(StatWorker), nameof(StatWorker.GetValueUnfinalized))]
     public static class H_StatWorker_Movement
     {
+        /// <summary>
+        /// Used tp "edit"/modify the movment speed of pawns.
+        /// </summary>
+        /// <param name="req"></param>
+        /// <param name="__result"></param>
+        /// <param name="___stat"></param>
         public static void Postfix(StatRequest req, ref float __result, StatDef ___stat)
         {
             if (___stat.index != StatDefOf.MoveSpeed.index) return;
-
-            if (Finder.StaminaTracker.TryGet(req.Thing as Pawn, out StaminaUnit unit))
-                switch (unit.CurStaminaMod)
-                {
-                    case StaminaMod.Breathing:
-                        __result *= 0.8f;
-                        unit.staminaOffset += 5 * 1e-4f;
-                        break;
-                    case StaminaMod.Running:
-                        __result *= 1.7f;
-                        break;
-                    case StaminaMod.Walking:
-                        __result *= 0.9f + unit.staminaLevel / 1.5f;
-                        break;
-                }
         }
     }
 }
